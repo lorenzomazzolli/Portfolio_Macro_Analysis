@@ -1,21 +1,38 @@
-# In this SQL notebook, we explore the link between per capita health expenditure and healthy life expectancy across countries.
+---
+title: "HealthSpend-LifeExp SQL Analysis"
+output: github_document
+date: "2025-07-06"
+---
 
+```{r setup, include=FALSE}
+library(DBI)
+library(RSQLite)
+con <- dbConnect(RSQLite::SQLite(), "/Users/lorenzomazzolli/mio_database.db")
+knitr::opts_chunk$set(connection = con)
+```
+
+```{sql average 2000, connection=con}
 SELECT AVG(E.Healthy_life_exp) AS Avg_Healthy_life_exp, AVG(E.Health_exp_pc) AS Avg_Health_exp
 FROM Expenditure_Life_Exp AS E
 JOIN Country AS C ON E.ID_Country = C.ID_Country
 WHERE E.Year = '2000';
+```
 
-
+```{sql average_2016, connection=con}
 SELECT AVG(E.Healthy_life_exp), AVG(E.Health_exp_pc)
 FROM Expenditure_Life_Exp AS E
 JOIN Country AS C ON E.ID_Country = C.ID_Country
-WHERE E.Year = '2000';
+WHERE E.Year = '2016';
+```
 
+```{sql ITA_2015, connection=con}
 SELECT E.Healthy_life_exp ,E.Health_exp_pc
 FROM Expenditure_Life_Exp AS E
 JOIN Country AS C ON E.ID_Country = C.ID_Country
 WHERE E.Year = '2015' and E.Country_Code='ITA';
+```
 
+```{sql max_values_2016, connection=con}
 SELECT 
     (SELECT C.Country_Name 
      FROM Expenditure_Life_Exp AS E
@@ -29,15 +46,18 @@ SELECT
      WHERE E.Health_exp_pc = (SELECT MAX(Health_exp_pc) FROM Expenditure_Life_Exp)
     ) AS Country_Max_Health_Exp,
     (SELECT MAX(Health_exp_pc) FROM Expenditure_Life_Exp) AS Max_Health_Exp;
+```
 
+```{sql max_values_percountry, connection=con}
 SELECT C.Country_Name, 
        MAX(E.Healthy_life_exp) AS Max_Healthy_Life_Exp, 
        MAX(E.Health_exp_pc) AS Max_Health_Exp
 FROM Expenditure_Life_Exp AS E
 JOIN Country AS C ON E.ID_Country = C.ID_Country
 GROUP BY C.Country_Name;
+```
 
-
+```{sql max_values_2016_2, connection=con}
 SELECT C.Country_Name ,
        E.Year ,
        E.Healthy_life_exp AS Value_Max
@@ -52,5 +72,53 @@ SELECT C.Country_Name ,
 FROM Expenditure_Life_Exp AS E
 JOIN Country AS C ON E.ID_Country = C.ID_Country
 WHERE E.Health_exp_pc = (SELECT MAX(Health_exp_pc) FROM Expenditure_Life_Exp);
+```
+
+```{sql hle_70_hepc_5000, connection=con}
+SELECT
+    C.Country_Name,
+    E.Year,
+    E.Healthy_life_exp,                
+    E.Health_exp_pc                   
+FROM Expenditure_Life_Exp AS E
+JOIN Country AS C
+      ON C.ID_Country = E.ID_Country
+WHERE E.Year = 2016
+  AND E.Healthy_life_exp      > 70         
+  AND E.Health_exp_pc   > 5000      
+ORDER BY E.Healthy_life_exp DESC;
+```
+
+```{sql hle_70_hepc__5000, connection=con}
+SELECT
+    C.Country_Name,
+    C.Country_Code,
+    E.Year,
+    E.Healthy_life_exp,                
+    E.Health_exp_pc                   
+FROM Expenditure_Life_Exp AS E
+JOIN Country AS C
+      ON C.ID_Country = E.ID_Country
+WHERE E.Year = 2016
+  AND E.Healthy_life_exp > 70         
+  AND E.Health_exp_pc   < 5000      
+ORDER BY E.Healthy_life_exp DESC;
+```
+
+```{sql hle_70, connection=con}
+SELECT
+    C.Country_Name,
+    C.Country_Code,
+    E.Year,
+    E.Healthy_life_exp,                
+    E.Health_exp_pc                  
+FROM Expenditure_Life_Exp AS E
+JOIN Country AS C
+      ON C.ID_Country = E.ID_Country
+WHERE E.Year = 2016
+  AND E.Healthy_life_exp > 70               
+ORDER BY E.Healthy_life_exp DESC;
+```
+
 
 
