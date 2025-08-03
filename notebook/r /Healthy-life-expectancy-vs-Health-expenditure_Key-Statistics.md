@@ -286,7 +286,7 @@ abline(model_linear_2016, col = "blue")
 text(X_2016, Y_2016, labels = Country_Code_2016, pos = 3, cex = .5)
 ```
 
-![](Macrostatistics_files/figure-gfm/linear-1.png)<!-- -->
+![](Healthy-life-expectancy-vs-Health-expenditure_Key-Statistics_files/figure-gfm/linear-1.png)<!-- -->
 
 # 5.2 Logarithmic
 
@@ -301,7 +301,7 @@ curve(coef(model_log_2016)[1] + coef(model_log_2016)[2] * log(x),
 text(X_2016, Y_2016, labels = Country_Code_2016, pos = 3, cex = .5)
 ```
 
-![](Macrostatistics_files/figure-gfm/logarithmic-1.png)<!-- -->
+![](Healthy-life-expectancy-vs-Health-expenditure_Key-Statistics_files/figure-gfm/logarithmic-1.png)<!-- -->
 
 # 5.3 Power
 
@@ -316,7 +316,7 @@ curve(exp(coef(model_power_2016)[1]) * x^coef(model_power_2016)[2],
 text(X_2016, Y_2016, labels = Country_Code_2016, pos = 3, cex = .5)
 ```
 
-![](Macrostatistics_files/figure-gfm/power-1.png)<!-- -->
+![](Healthy-life-expectancy-vs-Health-expenditure_Key-Statistics_files/figure-gfm/power-1.png)<!-- -->
 
 # 5.4 Polynomial
 
@@ -333,7 +333,7 @@ curve(coef(model_poly_2016)[1] +
 text(X_2016, Y_2016, labels = Country_Code_2016, pos = 3, cex = .5)
 ```
 
-![](Macrostatistics_files/figure-gfm/polynomial-1.png)<!-- -->
+![](Healthy-life-expectancy-vs-Health-expenditure_Key-Statistics_files/figure-gfm/polynomial-1.png)<!-- -->
 
 # 5.5 ggplot2 versions with labels
 
@@ -385,4 +385,6 @@ grid.arrange(plot_linear, plot_log, plot_power, plot_poly, nrow = 2, ncol = 2)
 
     ## `geom_smooth()` using formula = 'y ~ x'
 
-![](Macrostatistics_files/figure-gfm/scatter%20plots%20with%20labels-1.png)<!-- -->
+![](Healthy-life-expectancy-vs-Health-expenditure_Key-Statistics_files/figure-gfm/scatter%20plots%20with%20labels-1.png)<!-- -->
+
+# The scatterplots compare four functional forms fitted to the 2016 cross-country data on health expenditure per capita and healthy life expectancy. While the simple linear model captures the general upward trend, the logarithmic and power regressions provide a better fit, suggesting diminishing returns to health spending. The polynomial model overfits the data, producing implausible results at higher expenditure levels (e.g., USA). Overall, the non-linear models confirm that increases in health spending are associated with gains in life expectancy, but at a decreasing rate.
