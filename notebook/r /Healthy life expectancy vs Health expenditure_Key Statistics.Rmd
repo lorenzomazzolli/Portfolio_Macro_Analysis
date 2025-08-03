@@ -279,4 +279,3 @@ plot_poly <- ggplot(df_2016, aes(Health_exp_pc, Healthy_life_exp)) +
 ```{r scatter plots with labels}
 grid.arrange(plot_linear, plot_log, plot_power, plot_poly, nrow = 2, ncol = 2)
 ```
-The scatterplots compare four functional forms fitted to the 2016 cross-country data on health expenditure per capita and healthy life expectancy. While the simple linear model captures the general upward trend, the logarithmic and power regressions provide a better fit, suggesting diminishing returns to health spending. The polynomial model overfits the data, producing implausible results at higher expenditure levels (e.g., USA). Overall, the non-linear models confirm that increases in health spending are associated with gains in life expectancy, but at a decreasing rate.
