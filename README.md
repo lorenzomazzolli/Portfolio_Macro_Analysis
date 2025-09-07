@@ -18,7 +18,11 @@ Exploratory analysis: portfolio &amp; macro stats in Python / R / SQL
 
 # SQL
 
-* **Healthy life expectancy vs Health expenditure p.c.** – scripts that build the Health expenditure & Healthy life expectancy tables used in the R notebook
+* **Healthy life expectancy vs Health expenditure p.c.** – scripts that build the Health expenditure & Healthy life expectancy tables used in the R notebook.
+
+# Power BI - Power Point - PDF
+
+* **Health expenditure per capita vs Life expectancy and GDP per capita** – report showing the relationships between health expenditure per capita, life expectancy, and GDP per capita. **Source**: `bi/pbix/`; **exports**: `report/pdf/`, `report/powerpoint/`.
 
 <div align="center">
   <img src="notebook/python/efficient_frontier.png" width="550"
@@ -34,6 +38,9 @@ Exploratory analysis: portfolio &amp; macro stats in Python / R / SQL
 | **`notebook/python/`** | `Portfolio_Analysis.ipynb` – returns, Sharpe, beta, cumulative index, Markowitz; PNG figures auto-exported alongside |
 | **`notebook/r/`** |`Healthy life expectancy vs Health expenditure_Key Statistics.r` - descriptive stats, Pearson correlation, four regression fits (linear, log, power, 2-degree polynomial); labelled scatter-plots. Rendered Markdown (`Healthy life expectancy vs Health expenditure_Key Statistics.md`)
 | **`notebook/sql/`** | `Healthy_Life_Exp vs Health_Exp_SQL.Rmd` + rendered `*.md` – SQL queries on HALE vs health-spend|
+| **`report/pdf/`** | `Health expenditure_Life expectancy_GDP per capita.pdf` |
+| **`report/pptx/`** | `Health expenditure_Life expectancy_GDP per capita.pptx` |
+| **`report/pbix/`** | `Health expenditure_Life expectancy_GDP per capita.pbix` |
 | **`data/`** | Raw CSV/Excel **and** `*.sql` files that create `Country`, `Expenditure_Life_Exp` tables |
 | **`docs/`** | HTML dashboards (Plotly / Streamlit); published via GitHub Pages |
 | **`requirements.txt`, `environment.yml`** | Python dependencies – pandas, numpy, matplotlib, plotly, PyPortfolioOpt, etc. |
@@ -51,7 +58,7 @@ jupyter lab                                # open notebook/python/Portfolio_Anal
 
 # ▶ R + SQL notebook
 # optional: build the SQLite db from SQL scripts
-sqlite3 Users/lorenzomazzolli/mio_database.db < data/File_country.sql                         sqlite3 Users/lorenzomazzolli/mio_database.db < data/File_Expenditure_Life_Exp.sql
+sqlite3 Users/lorenzomazzolli/mio_database.db < data/File_country.sql                                          sqlite3 Users/lorenzomazzolli/mio_database.db < data/File_Expenditure_Life_Exp.sql
 
 # then in RStudio:
 #   File ▸ Open   notebook/r/Healthy life expectancy vs Health expenditure_Key Statistics.Rmd  →  Knit
